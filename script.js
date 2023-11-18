@@ -90,14 +90,42 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-  var passwordLength = prompt ("Welcome to the Password Generator!\nPlease enter the desired length of password.\n(Enter a number from 8 to 128.)") 
-  if (passwordLength >= 8 && passwordLength <= 128) {
-    var isLowerCasedCharacters = confirm ("Include lower-cased characters?\nClick 'OK' to include or 'Cancel' to exclude.")
-    var isUpperCasedCharacters = confirm ("Include upper-cased characters?\nClick 'OK' to include or 'Cancel' to exclude.")
-    var isNumericCharacters = confirm ("Include numeric characters?\nClick 'OK' to include or 'Cancel' to exclude.")
-    var isSpecialCharacters = confirm ("Would you like to include special characters in your password?\nClick 'OK' to include or 'Cancel' to exclude.")
-  } else {
-    alert ("Error.\nPassword needs to be at least 8 characters but no more than 128.\n(Please refresh the page to restart, and enter a number from 8 to 128.)");
+  while (true) {
+    var passwordLength = prompt ("Welcome to the Password Generator!\nPlease enter the desired length of password.\n(Enter a number from 8 to 128.)") 
+    let characterType = []
+
+    if (passwordLength < 8 || passwordLength > 128) {
+      alert ("Error.\nPassword needs to be at least 8 characters but no more than 128.\n(Please enter a number from 8 to 128.)");
+    } else {
+      while (true) {
+        var isLowerCasedCharacters = confirm ("Include lower-cased characters?\nClick 'OK' to include or 'Cancel' to exclude.");
+        var isUpperCasedCharacters = confirm ("Include upper-cased characters?\nClick 'OK' to include or 'Cancel' to exclude.");
+        var isNumericCharacters = confirm ("Include numeric characters?\nClick 'OK' to include or 'Cancel' to exclude.");
+        var isSpecialCharacters = confirm ("Include special characters in your password?\nClick 'OK' to include or 'Cancel' to exclude.");
+
+        if (isLowerCasedCharacters === true) {
+          characterType.push(lowerCasedCharacters);
+        }
+        if (isUpperCasedCharacters === true) {
+          characterType.push(upperCasedCharacters);
+        }
+        if (isNumericCharacters === true) {
+          characterType.push(numericCharacters);
+        }
+        if (isSpecialCharacters === true) {
+          characterType.push(specialCharacters);
+        }
+        console.log (passwordLength)
+        console.log (characterType)
+  
+        if (characterType.length > 0) {
+          break
+        } else {
+          alert ("Error.\nPassword must include at least one character type.")
+        }
+      }
+      break
+    }
   }
 }
 getPasswordOptions()
