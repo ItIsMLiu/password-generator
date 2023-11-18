@@ -90,8 +90,17 @@ var upperCasedCharacters = [
 
 // Function to prompt user for password options
 function getPasswordOptions() {
-
+  var passwordLength = prompt ("Welcome to the Password Generator!\nPlease enter the desired length of password.\n(Enter a number from 8 to 128.)") 
+  if (passwordLength >= 8 && passwordLength <= 128) {
+    var isLowerCasedCharacters = confirm ("Include lower-cased characters?\nClick 'OK' to include or 'Cancel' to exclude.")
+    var isUpperCasedCharacters = confirm ("Include upper-cased characters?\nClick 'OK' to include or 'Cancel' to exclude.")
+    var isNumericCharacters = confirm ("Include numeric characters?\nClick 'OK' to include or 'Cancel' to exclude.")
+    var isSpecialCharacters = confirm ("Would you like to include special characters in your password?\nClick 'OK' to include or 'Cancel' to exclude.")
+  } else {
+    alert ("Error.\nPassword needs to be at least 8 characters but no more than 128.\n(Please refresh the page to restart, and enter a number from 8 to 128.)");
+  }
 }
+getPasswordOptions()
 
 // Function for getting a random element from an array
 function getRandom(arr) {
