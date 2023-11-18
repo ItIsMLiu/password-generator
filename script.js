@@ -91,17 +91,15 @@ var upperCasedCharacters = [
 // Function to prompt user for password options
 function getPasswordOptions() {
   while (true) {
-    var passwordLength = prompt ("Welcome to the Password Generator!\nPlease enter the desired length of password.\n(Enter a number from 8 to 128.)") 
+    let passwordLength = prompt ("Welcome to the Password Generator!\nPlease enter the desired length of password.\n(Enter a number from 8 to 128.)") 
     let characterType = []
 
-    if (passwordLength < 8 || passwordLength > 128) {
-      alert ("Error.\nPassword needs to be at least 8 characters but no more than 128.\n(Please enter a number from 8 to 128.)");
-    } else {
+    if (passwordLength >= 8 && passwordLength <= 128 ) {
       while (true) {
-        var isLowerCasedCharacters = confirm ("Include lower-cased characters?\nClick 'OK' to include or 'Cancel' to exclude.");
-        var isUpperCasedCharacters = confirm ("Include upper-cased characters?\nClick 'OK' to include or 'Cancel' to exclude.");
-        var isNumericCharacters = confirm ("Include numeric characters?\nClick 'OK' to include or 'Cancel' to exclude.");
-        var isSpecialCharacters = confirm ("Include special characters in your password?\nClick 'OK' to include or 'Cancel' to exclude.");
+        let isLowerCasedCharacters = confirm ("Include lower-cased characters?\nClick 'OK' to include or 'Cancel' to exclude.");
+        let isUpperCasedCharacters = confirm ("Include upper-cased characters?\nClick 'OK' to include or 'Cancel' to exclude.");
+        let isNumericCharacters = confirm ("Include numeric characters?\nClick 'OK' to include or 'Cancel' to exclude.");
+        let isSpecialCharacters = confirm ("Include special characters in your password?\nClick 'OK' to include or 'Cancel' to exclude.");
 
         if (isLowerCasedCharacters === true) {
           characterType.push(lowerCasedCharacters);
@@ -125,6 +123,8 @@ function getPasswordOptions() {
         }
       }
       break
+    } else {
+      alert ("Error.\nPassword needs to be at least 8 characters but no more than 128.\n(Please enter a number from 8 to 128.)");
     }
   }
 }
