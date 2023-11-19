@@ -90,7 +90,7 @@ var upperCasedCharacters = [
 
 //Global-scoped variables:
 let passwordLength;
-let characterType = []
+let characterType = [];
 
 // Function to prompt user for password options
 function getPasswordOptions() {
