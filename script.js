@@ -88,11 +88,14 @@ var upperCasedCharacters = [
   'Z'
 ];
 
+//Global-scoped variables:
+let passwordLength;
+let characterType = []
+
 // Function to prompt user for password options
 function getPasswordOptions() {
   while (true) {
-    let passwordLength = prompt ("Welcome to the Password Generator!\nPlease enter the desired length of password.\n(Enter a number from 8 to 128.)") 
-    let characterType = []
+    passwordLength = prompt ("Welcome to the Password Generator!\nPlease enter the desired length of password.\n(Enter a number from 8 to 128.)") 
 
     if (passwordLength >= 8 && passwordLength <= 128 ) {
       while (true) {
@@ -102,7 +105,7 @@ function getPasswordOptions() {
         let isSpecialCharacters = confirm ("Include special characters in your password?\nClick 'OK' to include or 'Cancel' to exclude.");
 
         if (isLowerCasedCharacters === true) {
-          characterType.push(lowerCasedCharacters);
+          characterType.push(lowerCasedCharacters); 
         }
         if (isUpperCasedCharacters === true) {
           characterType.push(upperCasedCharacters);
@@ -128,16 +131,22 @@ function getPasswordOptions() {
     }
   }
 }
-getPasswordOptions()
 
 // Function for getting a random element from an array
 function getRandom(arr) {
-
+  return arr[Math.floor(Math.random() * arr.length)]
 }
 
 // Function to generate password with user input
 function generatePassword() {
-
+  getPasswordOptions();
+  let password = [];
+  while (passwordLength > 0) {
+    let selectedArray = characterType[Math.floor(Math.random() * characterType.length)]
+    password.push(getRandom(selectedArray))
+    passwordLength--
+  }
+  return password.join('')
 }
 
 // Get references to the #generate element
